@@ -23,7 +23,7 @@ struct RecipeFeaturedView: View {
                 .fontWeight(.bold)
                 .padding(.leading)
                 .padding(.top, 40)
-                .font(.largeTitle)
+                .font(Font.custom("Avenir Heavy", size: 24))
             
             GeometryReader { geo in
                 TabView (selection: $tabSelectionIndex){
@@ -48,6 +48,7 @@ struct RecipeFeaturedView: View {
                                             .clipped()
                                         Text(model.recipes[index].name)
                                             .padding(5)
+                                            .font(Font.custom("Avenir", size: 15))
                                     }
                                 }
                             })
@@ -70,10 +71,11 @@ struct RecipeFeaturedView: View {
             
             VStack (alignment: .leading, spacing: 10){
                 Text("Preparation Time:")
-                    .font(.headline)
+                    .font(Font.custom("Avenir Heavy", size: 16))
                 Text(model.recipes[tabSelectionIndex].prepTime)
+                    .font(Font.custom("Avenir", size: 15))
                 Text("Highlights:")
-                    .font(.headline)
+                    .font(Font.custom("Avenir Heavy", size: 16))
                 RecipeHighlights(highlights: model.recipes[tabSelectionIndex].highlights)
             }
             .padding(.leading)
@@ -88,12 +90,13 @@ struct RecipeFeaturedView: View {
         
         // Find the index of first recipe that is featured
         let index = model.recipes.firstIndex { (recipe) -> Bool in
-            /*
+            
             if recipe.featured == true {
                 return true
+            } else {
+                return false
             }
-             */
-            return recipe.featured
+            //return recipe.featured
         }
         tabSelectionIndex = index ?? 0
     }

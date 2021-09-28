@@ -59,14 +59,14 @@ class RecipeModel: ObservableObject {
                 numerator %= denominator
                 
                 // Assign to portion string
-                portion += String (wholePortion)
+                portion += String(wholePortion)
                 
             }
             // Express the remainder as a fraction
             if numerator > 0 {
                 
                 // Assign remainder as fraction to the portion string
-                portion += wholePortion > 0 ? "" : ""
+                portion += wholePortion > 0 ? " " : ""
                 portion += "\(numerator)/\(denominator)"
             }
         }
