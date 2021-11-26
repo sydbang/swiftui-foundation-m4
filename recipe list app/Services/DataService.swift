@@ -14,15 +14,7 @@ class DataService {
         
         // Get a url path to the jason file
         
-        // Create a url object
         
-        // Create a data object
-        
-        // Decode the data with a JSON decoder
-        
-        // Add the unique IDs
-        
-        // Return the recipes
         
         let pathString = Bundle.main.path(forResource: "recipes", ofType: "json")
         
@@ -31,17 +23,21 @@ class DataService {
         guard pathString != nil else {
             return [Recipe]()
         }
-        
+        // Create a url object
         let url = URL(fileURLWithPath: pathString!)
         
         do {
+            
+            // Create a data object
             let data = try Data(contentsOf: url)
             
+            // Decode the data with a JSON decoder
             let decoder = JSONDecoder()
             
             do {
                 let recipeData = try decoder.decode([Recipe].self, from: data)
                 
+                // Add the unique IDs
                 for r in recipeData {
                     r.id = UUID()
                     
@@ -51,6 +47,7 @@ class DataService {
                     }
                 }
                 
+                // Return the recipes
                 return recipeData
             }
             catch {

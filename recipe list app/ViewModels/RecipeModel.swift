@@ -10,6 +10,9 @@ import Foundation
 class RecipeModel: ObservableObject {
     
     @Published var recipes = [Recipe]()
+    @Published var categories = Set<String>()
+    @Published var selectedCategory: String?
+    
     
     init() {
         
@@ -26,6 +29,19 @@ class RecipeModel: ObservableObject {
         
         //Make function getLocalData from the data service a "static" function and we can just do this without creating instance of dataservice
         self.recipes = DataService.getLocalData()
+        
+        //var categoryStringArray = self.recipes.map { r in
+        //    return r.category
+        //}
+        
+        // same as:
+        // for r in recipes {
+        // categoryStringArray.append(r.category)
+        // }
+        self.categories = Set(self.recipes.map { r in
+            return r.category
+        })
+        self.categories.update(with: Constants.defaultListFilter)
     }
     
     static func getPortion(Ingredient:Ingredient, recipeServings:Int, targetServings:Int) -> String {

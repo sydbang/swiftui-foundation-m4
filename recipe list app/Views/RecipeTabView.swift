@@ -18,6 +18,13 @@ struct RecipeTabView: View {
                         Text("Featured")
                     }
                 }
+            RecipeCategoryView()
+                .tabItem {
+                    VStack {
+                        Image(systemName: "square.grid.2x2")
+                        Text("Category")
+                    }
+                }
             RecipeListView()
                 .tabItem {
                     VStack {
